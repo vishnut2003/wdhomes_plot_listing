@@ -2,7 +2,8 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
-  basePath: '/plot-listing'
+  basePath: '/listings',
+  trailingSlash: false,
 };
 
 export default nextConfig;

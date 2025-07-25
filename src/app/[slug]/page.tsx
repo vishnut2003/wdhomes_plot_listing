@@ -4,8 +4,31 @@ import React from 'react'
 import ListingsPageHeader from './PageHeader'
 import FiltersButtons from './Filters'
 import ListingContent from './ListingContent'
+import { notFound } from 'next/navigation'
 
-const SingleLocationListingsPage = () => {
+type PageProps = {
+    params: Promise<{ slug: string }>;
+};
+
+const listingUrlsMaps: {
+    [key: string]: string,
+} = {
+    "new-homes-noida": "Noida",
+    "new-homes-greater-noida": "Greater Noida",
+    "new-homes-gurugram": "Gurugram",
+    "new-homes-ghaziabad": "Ghaziabad",
+}
+
+const SingleLocationListingsPage = async ({ params }: PageProps) => {
+
+    const { slug } = await params;
+
+    const location = listingUrlsMaps[slug];
+
+    if (!location) {
+        notFound();
+    }
+
     return (
         <BasicLayouts>
 
@@ -13,7 +36,9 @@ const SingleLocationListingsPage = () => {
             <SectionLayout
                 classNames='py-[30px]'
             >
-                <ListingsPageHeader />
+                <ListingsPageHeader
+                    defaultLocation={location}
+                />
             </SectionLayout>
 
             {/* Listings filters */}

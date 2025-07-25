@@ -12,9 +12,11 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
-const ListingsPageHeader = () => {
+const ListingsPageHeader = ({ defaultLocation }: {
+    defaultLocation: string,
+}) => {
 
-    const [currentLocation, setCurrentLocation] = useState<string>("Greater Noida");
+    const [currentLocation, setCurrentLocation] = useState<string>(defaultLocation);
 
     const locations = [
         "Noida",

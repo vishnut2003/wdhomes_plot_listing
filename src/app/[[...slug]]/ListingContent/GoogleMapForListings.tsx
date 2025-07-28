@@ -8,8 +8,9 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import { PlotItemData } from ".";
+import GoogleMapPinPoint from "./GoogleMapPinPoint";
 
-const GoogleMapForListings = ({}: {
+const GoogleMapForListings = ({ defaultPlotData }: {
   defaultPlotData: PlotItemData[],
 }) => {
 
@@ -34,33 +35,19 @@ const GoogleMapForListings = ({}: {
               width: "100%",
               height: "85vh",
             }}
-            zoom={12}
+            zoom={11}
             center={{
-              lat: 28.6139,
-              lng: 77.2090,
+              lat: defaultPlotData[0] ? defaultPlotData[0].location.pinPoint.lat : 28.6139,
+              lng: defaultPlotData[0] ? defaultPlotData[0].location.pinPoint.lng : 77.2090,
             }}
           >
-            <OverlayView
-              mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
-              position={{
-                lat: 28.6139,
-                lng: 77.2090,
-              }}
-            >
-
-              <Popover>
-                <PopoverTrigger
-                  className="bg-white p-[2px] rounded-full"
-                >
-                  <RiCircleFill
-                    size={15}
-                    className="text-wdhomes-color-primary"
-                  />
-                </PopoverTrigger>
-                <PopoverContent>Place content for the popover here.</PopoverContent>
-              </Popover>
-
-            </OverlayView>
+            {
+              defaultPlotData.map((plotData, index) => (
+                <GoogleMapPinPoint
+                  plotData={plotData}
+                />
+              ))
+            }
           </GoogleMap>
         </LoadScript>
       </div>

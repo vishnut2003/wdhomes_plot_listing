@@ -22,7 +22,8 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
 
         // Custom Variants
-        borderStyle: "bg-background border border-wdhomes-color-primary font-medium rounded-none"
+        borderStyle: "bg-background border border-wdhomes-color-primary font-medium rounded-none",
+        basicThemeStyle: "bg-wdhomes-color-primary text-primary-foreground shadow-xs hover:bg-wdhomes-color-primary/90"
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",

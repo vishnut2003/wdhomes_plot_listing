@@ -1,12 +1,6 @@
 'use client';
 
-import { GoogleMap, LoadScript, OverlayView } from "@react-google-maps/api";
-import { RiCircleFill } from "@remixicon/react";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover"
+import { GoogleMap, LoadScript } from "@react-google-maps/api";
 import { PlotItemData } from ".";
 import GoogleMapPinPoint from "./GoogleMapPinPoint";
 
@@ -45,6 +39,7 @@ const GoogleMapForListings = ({ defaultPlotData }: {
               defaultPlotData.map((plotData, index) => (
                 <GoogleMapPinPoint
                   plotData={plotData}
+                  key={index}
                 />
               ))
             }

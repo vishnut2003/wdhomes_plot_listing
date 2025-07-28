@@ -25,7 +25,7 @@ export interface PlotItemData {
 
 const dummyData: PlotItemData[] = [
     {
-        image: "/dummy/dummy-listing-image.jpg",
+        image: "/nextjs-images/dummy/dummy-listing-image.jpg",
         name: "Plan 1908",
         location: {
             state: "Delhi",
@@ -45,7 +45,7 @@ const dummyData: PlotItemData[] = [
         }
     },
     {
-        image: "/dummy/dummy-listing-image.jpg",
+        image: "/nextjs-images/dummy/dummy-listing-image.jpg",
         name: "Plan 1908",
         location: {
             state: "Delhi",
@@ -65,7 +65,7 @@ const dummyData: PlotItemData[] = [
         }
     },
     {
-        image: "/dummy/dummy-listing-image.jpg",
+        image: "/nextjs-images/dummy/dummy-listing-image.jpg",
         name: "Plan 1908",
         location: {
             state: "Delhi",

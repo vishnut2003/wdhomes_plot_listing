@@ -7,7 +7,7 @@ import ListingContent from './ListingContent'
 import { notFound } from 'next/navigation'
 
 type PageProps = {
-    params: Promise<{ slug: string }>;
+    params: Promise<{ slug: string[] }>;
 };
 
 const listingUrlsMaps: {
@@ -17,13 +17,17 @@ const listingUrlsMaps: {
     "new-homes-greater-noida": "Greater Noida",
     "new-homes-gurugram": "Gurugram",
     "new-homes-ghaziabad": "Ghaziabad",
+    "new-homes-goa": "goa",
 }
 
 const SingleLocationListingsPage = async ({ params }: PageProps) => {
 
     const { slug } = await params;
+    const [locationPath] = slug || [];
 
-    const location = listingUrlsMaps[slug];
+    console.log(slug);
+
+    const location = listingUrlsMaps[locationPath];
 
     if (!location) {
         notFound();

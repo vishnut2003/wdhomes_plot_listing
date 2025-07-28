@@ -1,76 +1,15 @@
 'use client';
 
 import React, { useState } from 'react'
+import { PlotItemData } from '.';
 
-export interface PlotItemData {
-    image: string,
-    name: string,
-    location: string,
-    startPrice: number,
-    homeData: {
-        beds: number,
-        baths: number,
-        cars: number,
-        sqft: number,
-    }
-}
-
-const dummyData: PlotItemData[] = [
-    {
-        image: "/dummy/dummy-listing-image.jpg",
-        name: "Plan 1908",
-        location: "Beltramo Ranch Moorpark, CA",
-        startPrice: 976990,
-        homeData: {
-            beds: 3,
-            baths: 4,
-            cars: 2,
-            sqft: 1967,
-        }
-    },
-    {
-        image: "/dummy/dummy-listing-image.jpg",
-        name: "Plan 1908",
-        location: "Beltramo Ranch Moorpark, CA",
-        startPrice: 976990,
-        homeData: {
-            beds: 3,
-            baths: 4,
-            cars: 2,
-            sqft: 1967,
-        }
-    },
-    {
-        image: "/dummy/dummy-listing-image.jpg",
-        name: "Plan 1908",
-        location: "Beltramo Ranch Moorpark, CA",
-        startPrice: 976990,
-        homeData: {
-            beds: 3,
-            baths: 4,
-            cars: 2,
-            sqft: 1967,
-        }
-    },
-    {
-        image: "/dummy/dummy-listing-image.jpg",
-        name: "Plan 1908",
-        location: "Beltramo Ranch Moorpark, CA",
-        startPrice: 976990,
-        homeData: {
-            beds: 3,
-            baths: 4,
-            cars: 2,
-            sqft: 1967,
-        }
-    },
-]
-
-const PlotLists = () => {
+const PlotLists = ({ defaultPlotData }: {
+    defaultPlotData: PlotItemData[],
+}) => {
 
     const SITE_BASE_PATH = process.env.NEXT_PUBLIC_BASE_URL;
 
-    const [plotsItems] = useState<PlotItemData[]>(dummyData);
+    const [plotsItems] = useState<PlotItemData[]>(defaultPlotData);
 
     return (
         <div
@@ -105,7 +44,7 @@ const PlotLists = () => {
                                     >{plot.name}</h3>
                                     <p
                                         className='font-light'
-                                    >{plot.location}</p>
+                                    >{plot.location.city}, {plot.location.state}, {plot.location.zipCode}</p>
                                     <p
                                         className='font-light text-lg'
                                     >From <span className='font-semibold'>&#8377;{plot.startPrice}</span></p>

@@ -2,15 +2,11 @@
 
 import React, { useState } from 'react'
 import { ListingsType } from '@/types/Listing';
-import { base64ToFile } from '@/functions/common';
-import Image from 'next/image';
 import ImagePrev from './ImagePrev';
 
 const PlotLists = ({ defaultPlotData }: {
     defaultPlotData: ListingsType[],
 }) => {
-
-    const SITE_BASE_PATH = process.env.NEXT_PUBLIC_BASE_URL;
 
     const [plotsItems] = useState<ListingsType[]>(defaultPlotData);
 

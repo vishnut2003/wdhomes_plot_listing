@@ -1,7 +1,6 @@
 'use client';
 
 import { RiLoaderLine } from "@remixicon/react";
-import { useState } from "react";
 
 const ImagePrev = ({ image }: {
     image: string,

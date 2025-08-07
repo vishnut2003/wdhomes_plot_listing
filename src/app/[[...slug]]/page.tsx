@@ -5,6 +5,10 @@ import ListingsPageHeader from './PageHeader'
 import FiltersButtons from './Filters'
 import ListingContent from './ListingContent'
 import { notFound } from 'next/navigation'
+import SingleListingPage from '../SingleListingPage/page'
+import { AxiosResponse } from 'axios'
+import { getDashboardAxios } from '@/axios/dashboardApi'
+import { ListingsType } from '@/types/Listing'
 
 type PageProps = {
     params: Promise<{ slug: string[] }>;
@@ -13,25 +17,62 @@ type PageProps = {
 const listingUrlsMaps: {
     [key: string]: string,
 } = {
-    "new-homes-noida": "Noida",
-    "new-homes-greater-noida": "Greater Noida",
-    "new-homes-gurugram": "Gurugram",
-    "new-homes-ghaziabad": "Ghaziabad",
+    "new-homes-noida": "noida",
+    "new-homes-greater-noida": "greater noida",
+    "new-homes-gurugram": "gurugram",
+    "new-homes-ghaziabad": "ghaziabad",
     "new-homes-goa": "goa",
 }
 
 const SingleLocationListingsPage = async ({ params }: PageProps) => {
 
     const { slug } = await params;
-    const [locationPath] = slug || [];
-
-    console.log(slug);
+    const [locationPath, listingSlug] = slug || [];
 
     const location = listingUrlsMaps[locationPath];
 
     if (!location) {
         notFound();
     }
+
+    if (location && listingSlug) {
+        return (
+            <BasicLayouts>
+                <SingleListingPage
+                    location={location}
+                    slug={listingSlug}
+                />
+            </BasicLayouts>
+        )
+    }
+
+    let apiResponse: AxiosResponse<{
+        data: ListingsType[],
+        page: number,
+        totalPage: number,
+        totalRecords: number,
+    }> | null = null;
+
+    try {
+
+        const axios = getDashboardAxios();
+        apiResponse = await axios.post('/api/listing-manager/get-all', {
+            city: location,
+            page: 1,
+        })
+
+    } catch (err) {
+        console.error(err);
+        notFound();
+    }
+
+    if (!apiResponse || !apiResponse.data) {
+        notFound();
+    }
+
+    const listingData = apiResponse.data;
+
+    console.log(listingData);
 
     return (
         <BasicLayouts>
@@ -45,18 +86,13 @@ const SingleLocationListingsPage = async ({ params }: PageProps) => {
                 />
             </SectionLayout>
 
-            {/* Listings filters */}
-            <SectionLayout
-                classNames='py-[10px]'
-            >
-                <FiltersButtons />
-            </SectionLayout>
-
             {/* Listings Content */}
             <SectionLayout
                 classNames='pt-[20px] pb-[10px]'
             >
-                <ListingContent />
+                <ListingContent
+                    listingData={listingData}
+                />
             </SectionLayout>
 
         </BasicLayouts>

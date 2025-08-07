@@ -2,13 +2,13 @@
 
 import { OverlayView } from '@react-google-maps/api'
 import React, { useState } from 'react'
-import { PlotItemData } from '.'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { RiCircleFill } from '@remixicon/react'
 import { Button } from '@/components/ui/button';
+import { ListingsType } from '@/types/Listing';
 
 const GoogleMapPinPoint = ({ plotData }: {
-    plotData: PlotItemData,
+    plotData: ListingsType,
 }) => {
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -19,8 +19,8 @@ const GoogleMapPinPoint = ({ plotData }: {
         <OverlayView
             mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
             position={{
-                lat: plotData.location.pinPoint.lat,
-                lng: plotData.location.pinPoint.lng,
+                lat: plotData.location.pinpoint.lat,
+                lng: plotData.location.pinpoint.lng,
             }}
         >
 
@@ -45,7 +45,7 @@ const GoogleMapPinPoint = ({ plotData }: {
                     <div
                         className='w-full h-[150px] rounded-md'
                         style={{
-                            backgroundImage: `url(${SITE_BASE_PATH}${plotData.image})`,
+                            backgroundImage: `url(${SITE_BASE_PATH})`,
                             backgroundPosition: "center",
                             backgroundSize: "cover",
                         }}
@@ -53,8 +53,8 @@ const GoogleMapPinPoint = ({ plotData }: {
                     <h3
                         className='text-lg font-semibold'
                     >{plotData.name}</h3>
-                    <p>{plotData.location.city}, {plotData.location.state}, {plotData.location.zipCode}</p>
-                    <p>From <b>&#8377;{plotData.startPrice}</b></p>
+                    <p>{plotData.location.address}</p>
+                    <p>From <b>&#8377;{plotData.price}</b></p>
                     
                     <Button
                         variant={'basicThemeStyle'}

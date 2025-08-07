@@ -1,11 +1,11 @@
 'use client';
 
 import { GoogleMap, LoadScript } from "@react-google-maps/api";
-import { PlotItemData } from ".";
 import GoogleMapPinPoint from "./GoogleMapPinPoint";
+import { ListingsType } from "@/types/Listing";
 
 const GoogleMapForListings = ({ defaultPlotData }: {
-  defaultPlotData: PlotItemData[],
+  defaultPlotData: ListingsType[],
 }) => {
 
   const GOOGLE_API = process.env.NEXT_PUBLIC_GOOGLE_CLOUDE_API;
@@ -31,8 +31,8 @@ const GoogleMapForListings = ({ defaultPlotData }: {
             }}
             zoom={11}
             center={{
-              lat: defaultPlotData[0] ? defaultPlotData[0].location.pinPoint.lat : 28.6139,
-              lng: defaultPlotData[0] ? defaultPlotData[0].location.pinPoint.lng : 77.2090,
+              lat: defaultPlotData[0] ? defaultPlotData[0].location.pinpoint.lat : 28.6139,
+              lng: defaultPlotData[0] ? defaultPlotData[0].location.pinpoint.lng : 77.2090,
             }}
           >
             {

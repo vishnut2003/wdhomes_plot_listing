@@ -1,15 +1,18 @@
 'use client';
 
 import React, { useState } from 'react'
-import { PlotItemData } from '.';
+import { ListingsType } from '@/types/Listing';
+import { base64ToFile } from '@/functions/common';
+import Image from 'next/image';
+import ImagePrev from './ImagePrev';
 
 const PlotLists = ({ defaultPlotData }: {
-    defaultPlotData: PlotItemData[],
+    defaultPlotData: ListingsType[],
 }) => {
 
     const SITE_BASE_PATH = process.env.NEXT_PUBLIC_BASE_URL;
 
-    const [plotsItems] = useState<PlotItemData[]>(defaultPlotData);
+    const [plotsItems] = useState<ListingsType[]>(defaultPlotData);
 
     return (
         <div
@@ -27,14 +30,9 @@ const PlotLists = ({ defaultPlotData }: {
                             <div
                                 className='flex items-start'
                             >
-                                <div
-                                    className='w-[40%] h-[180px] overflow-hidden'
-                                    style={{
-                                        backgroundImage: `url(${SITE_BASE_PATH}${plot.image})`,
-                                        backgroundPosition: "center",
-                                        backgroundSize: "cover",
-                                    }}
-                                ></div>
+                                <ImagePrev
+                                    image={plot.featuredImage}
+                                />
 
                                 <div
                                     className='p-4 space-y-2'
@@ -44,10 +42,10 @@ const PlotLists = ({ defaultPlotData }: {
                                     >{plot.name}</h3>
                                     <p
                                         className='font-light'
-                                    >{plot.location.city}, {plot.location.state}, {plot.location.zipCode}</p>
+                                    >{plot.location.address}</p>
                                     <p
                                         className='font-light text-lg'
-                                    >From <span className='font-semibold'>&#8377;{plot.startPrice}</span></p>
+                                    >From <span className='font-semibold'>&#8377;{plot.price}</span></p>
                                 </div>
                             </div>
 
@@ -56,8 +54,8 @@ const PlotLists = ({ defaultPlotData }: {
                                 className='w-full flex justify-between border-t border-gray-200'
                             >
                                 {
-                                    plot.homeData ?
-                                        Object.entries(plot.homeData).map(([key, value], index) => {
+                                    plot.attributes ?
+                                        plot.attributes.map((attribute, index) => {
 
                                             return (
                                                 <div
@@ -66,10 +64,10 @@ const PlotLists = ({ defaultPlotData }: {
                                                 >
                                                     <p
                                                         className='font-semibold text-lg'
-                                                    >{value}</p>
+                                                    >{attribute.value}</p>
                                                     <p
                                                         className='font-light text-lg'
-                                                    >{key}</p>
+                                                    >{attribute.label}</p>
                                                 </div>
                                             )
                                         }) :
@@ -78,6 +76,11 @@ const PlotLists = ({ defaultPlotData }: {
                             </div>
                         </div>
                     ))
+                }
+
+                {
+                    plotsItems.length === 0 &&
+                    <p>No result found</p>
                 }
             </div>
         </div>

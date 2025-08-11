@@ -71,8 +71,6 @@ const SingleLocationListingsPage = async ({ params }: PageProps) => {
 
     const listingData = apiResponse.data;
 
-    console.log(listingData);
-
     return (
         <BasicLayouts>
 

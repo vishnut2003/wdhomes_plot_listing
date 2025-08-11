@@ -6,6 +6,12 @@ const ImagePrev = ({ image }: {
     image: string,
 }) => {
 
+    const DASHBOARD_BASE_URL = process.env.NEXT_PUBLIC_DASHBOARD_BASE_URL;
+
+    if (!DASHBOARD_BASE_URL) {
+        throw new Error("NEXT_PUBLIC_DASHBOARD_BASE_URL is required in .env")
+    }
+
     if (!image) {
         return (
             <div
@@ -23,7 +29,7 @@ const ImagePrev = ({ image }: {
         <div
             className='w-[40%] h-[180px] overflow-hidden'
             style={{
-                backgroundImage: `url(${image})`,
+                backgroundImage: `url(${DASHBOARD_BASE_URL}${image})`,
                 backgroundPosition: "center",
                 backgroundSize: "cover",
             }}

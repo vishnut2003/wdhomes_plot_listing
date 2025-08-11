@@ -13,7 +13,7 @@ const GoogleMapPinPoint = ({ plotData }: {
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
-    const SITE_BASE_PATH = process.env.NEXT_PUBLIC_BASE_URL || "";
+    const DASHBOARD_BASE_URL = process.env.NEXT_PUBLIC_DASHBOARD_BASE_URL || "";
 
     return (
         <OverlayView
@@ -45,7 +45,7 @@ const GoogleMapPinPoint = ({ plotData }: {
                     <div
                         className='w-full h-[150px] rounded-md'
                         style={{
-                            backgroundImage: `url(${SITE_BASE_PATH})`,
+                            backgroundImage: `url(${DASHBOARD_BASE_URL}${plotData.featuredImage})`,
                             backgroundPosition: "center",
                             backgroundSize: "cover",
                         }}

@@ -11,12 +11,13 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { useRouter } from 'next/navigation';
 
 const ListingsPageHeader = ({ defaultLocation }: {
     defaultLocation: string,
 }) => {
 
-    const [currentLocation, setCurrentLocation] = useState<string>(defaultLocation);
+    const router = useRouter();
 
     const locations = [
         "Noida",
@@ -35,9 +36,9 @@ const ListingsPageHeader = ({ defaultLocation }: {
                 New homes in
                 <DropdownMenu>
                     <DropdownMenuTrigger
-                        className='ml-[6px] font-bold outline-none inline-flex items-center gap-2 cursor-pointer'
+                        className='ml-[6px] font-bold outline-none inline-flex items-center gap-2 cursor-pointer capitalize'
                     >
-                        {currentLocation}
+                        {defaultLocation.split('-').join(' ')}
                         <RiArrowDownSLine
                             size={30}
                         />
@@ -52,7 +53,13 @@ const ListingsPageHeader = ({ defaultLocation }: {
                                 <DropdownMenuItem
                                     key={index}
                                     onClick={() => {
-                                        setCurrentLocation(location);
+                                        let city = location.toLowerCase();
+
+                                        if (city.split(' ').length > 1) {
+                                            city = city.split(' ').join('-');
+                                        }
+
+                                        router.push(`/new-homes-${city}/`)
                                     }}
                                 >{location}</DropdownMenuItem>
                             ))

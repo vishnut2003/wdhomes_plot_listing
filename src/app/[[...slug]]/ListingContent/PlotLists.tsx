@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import { ListingsType } from '@/types/Listing';
 import ImagePrev from './ImagePrev';
+import Link from 'next/link';
 
 const PlotLists = ({ defaultPlotData }: {
     defaultPlotData: ListingsType[],
@@ -42,6 +43,12 @@ const PlotLists = ({ defaultPlotData }: {
                                     <p
                                         className='font-light text-lg'
                                     >From <span className='font-semibold'>&#8377;{plot.price}</span></p>
+                                    <Link
+                                        className='py-2 px-5 rounded-md bg-wdhomes-color-primary block w-max font-semibold text-sm text-white'
+                                        href={`/new-homes-${plot.location.city}/${plot.slug}`}
+                                    >
+                                        Explore
+                                    </Link>
                                 </div>
                             </div>
 

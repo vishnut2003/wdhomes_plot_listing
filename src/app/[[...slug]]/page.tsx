@@ -17,10 +17,9 @@ const listingUrlsMaps: {
     [key: string]: string,
 } = {
     "new-homes-noida": "noida",
-    "new-homes-greater-noida": "greater noida",
+    "new-homes-greater-noida": "greater-noida",
     "new-homes-gurugram": "gurugram",
     "new-homes-ghaziabad": "ghaziabad",
-    "new-homes-goa": "goa",
 }
 
 const SingleLocationListingsPage = async ({ params }: PageProps) => {

@@ -1,5 +1,4 @@
 import SectionLayout from '@/layouts/SectionLayout';
-import Image from 'next/image'
 import React from 'react'
 
 const ImagesSection = ({

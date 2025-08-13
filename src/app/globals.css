@@ -117,7 +117,44 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Single listings content */
+
+.single-listing-description-content>* {
+  margin-bottom: 15px;
+}
+
+.single-listing-description-content>h1 {
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.single-listing-description-content>h2 {
+  font-size: 37px;
+  font-weight: 700;
+}
+
+.single-listing-description-content>h3 {
+  font-size: 34px;
+  font-weight: 700;
+}
+
+.single-listing-description-content>h4 {
+  font-size: 31px;
+  font-weight: 700;
+}
+
+.single-listing-description-content>h5 {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.single-listing-description-content>h6 {
+  font-size: 25px;
+  font-weight: 700;
 }

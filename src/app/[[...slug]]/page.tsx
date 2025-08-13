@@ -75,7 +75,7 @@ const SingleLocationListingsPage = async ({ params }: PageProps) => {
 
             {/* Page Header */}
             <SectionLayout
-                classNames='py-[30px]'
+                className='py-[30px]'
             >
                 <ListingsPageHeader
                     defaultLocation={location}
@@ -84,7 +84,7 @@ const SingleLocationListingsPage = async ({ params }: PageProps) => {
 
             {/* Listings Content */}
             <SectionLayout
-                classNames='pt-[20px] pb-[10px]'
+                className='pt-[20px] pb-[10px]'
             >
                 <ListingContent
                     listingData={listingData}

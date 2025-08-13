@@ -1,6 +1,6 @@
 'use client';
 
-import { GoogleMap, LoadScript } from "@react-google-maps/api";
+import { GoogleMap, LoadScript, useLoadScript } from "@react-google-maps/api";
 import GoogleMapPinPoint from "./GoogleMapPinPoint";
 import { ListingsType } from "@/types/Listing";
 
@@ -14,6 +14,8 @@ const GoogleMapForListings = ({ defaultPlotData }: {
     throw new Error("NEXT_PUBLIC_GOOGLE_CLOUDE_API not available");
   }
 
+  const { isLoaded } = useLoadScript({ googleMapsApiKey: GOOGLE_API });
+
   return (
     <div
       className="w-full"
@@ -21,9 +23,8 @@ const GoogleMapForListings = ({ defaultPlotData }: {
       <div
         className="sticky top-[70px]"
       >
-        <LoadScript
-          googleMapsApiKey={GOOGLE_API}
-        >
+        {
+          isLoaded &&
           <GoogleMap
             mapContainerStyle={{
               width: "100%",
@@ -44,7 +45,7 @@ const GoogleMapForListings = ({ defaultPlotData }: {
               ))
             }
           </GoogleMap>
-        </LoadScript>
+        }
       </div>
     </div>
   )

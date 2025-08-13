@@ -1,6 +1,6 @@
 'use client';
 
-import { GoogleMap, LoadScript, useLoadScript } from "@react-google-maps/api";
+import { GoogleMap, useLoadScript } from "@react-google-maps/api";
 import GoogleMapPinPoint from "./GoogleMapPinPoint";
 import { ListingsType } from "@/types/Listing";
 

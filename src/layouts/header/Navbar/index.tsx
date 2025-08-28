@@ -11,6 +11,8 @@ import {
 import NavbarMenuSubItems from './SubItems';
 import { handleCatchBlock } from '@/functions/common';
 import Link from 'next/link';
+import { RiArrowDownSLine } from '@remixicon/react';
+import { cn } from '@/lib/utils';
 
 const NavbarMenu = () => {
 
@@ -32,7 +34,7 @@ const NavbarMenu = () => {
 
     return (
         <div
-            className='flex items-center justify-end w-full py-[15px] px-[25px] h-full'
+            className='flex items-center gap-[10px]'
         >
 
             {
@@ -40,8 +42,24 @@ const NavbarMenu = () => {
                     <DropdownMenu
                         key={index}
                     >
-                        <DropdownMenuTrigger asChild>
-                            <button>{item.title}</button>
+                        <DropdownMenuTrigger
+                            asChild
+                            className={cn(
+                                index !== menuItems.length - 1 &&
+                                'relative after:w-[0.5px] after:block after:absolute after:right-[-6px] after:top-1/2 after:h-[20px] after:bg-wdhomes-color-primary after:-translate-1/2'
+                            )}
+                        >
+                            <button
+                                className='py-[12px] px-[23px] border-2 border-transparent hover:border-wdhomes-color-primary hover:text-wdhomes-color-primary flex items-center gap-[10px] outline-none cursor-pointer'
+                            >
+                                {item.title}
+                                {
+                                    item.children && item.children.length > 0 &&
+                                    <RiArrowDownSLine
+                                        size={20}
+                                    />
+                                }
+                            </button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent className="w-56" align="start">
 

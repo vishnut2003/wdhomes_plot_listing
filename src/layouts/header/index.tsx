@@ -27,7 +27,17 @@ const LayoutHeader = () => {
         <div
           className='w-full flex flex-col'
         >
-          <NavbarMenu />
+          <div
+            className='w-full flex items-center justify-end gap-[25px] py-[15px] px-[25px] h-full'
+          >
+            <NavbarMenu />
+            <Link
+              href={"#"}
+              className='py-[12px] px-[23px] text-[16px] border-2 border-wdhomes-color-primary w-max text-wdhomes-color-primary font-semibold hover:bg-wdhomes-color-primary hover:text-white transition-all'
+            >
+              Sing In
+            </Link>
+          </div>
           <div
             className='bg-black flex items-center justify-between text-white py-[10px] px-[25px] font-medium'
           >

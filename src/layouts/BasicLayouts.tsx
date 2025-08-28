@@ -1,4 +1,6 @@
 import React from 'react'
+import LayoutHeader from './header'
+import LayoutFooter from './footer'
 
 const BasicLayouts = ({ children }: Readonly<{
     children: React.ReactNode,
@@ -7,6 +9,8 @@ const BasicLayouts = ({ children }: Readonly<{
         <div
             className='bg-[#00000008] min-h-screen'
         >
+
+            <LayoutHeader/>
 
             {/* Page Content START */}
 
@@ -17,6 +21,8 @@ const BasicLayouts = ({ children }: Readonly<{
             </div>
 
             {/* Page Content END */}
+
+            <LayoutFooter/>
 
         </div>
     )

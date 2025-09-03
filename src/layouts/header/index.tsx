@@ -14,7 +14,7 @@ const LayoutHeader = () => {
         className='w-full flex items-stretch bg-white'
       >
         <div
-          className='w-[120px] p-[15px] bg-wdhomes-color-primary'
+          className='w-[120px] p-[15px] bg-wdhomes-color-primary flex items-center'
         >
           <Image
             alt='Logo'
